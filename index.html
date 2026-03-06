@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>supa</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* subtle animated gradient */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle at 30% 30%, #111, transparent 40%),
+              radial-gradient(circle at 70% 70%, #0a0a0a, transparent 40%);
+  animation: slowMove 25s linear infinite;
+  z-index: -1;
+}
+
+@keyframes slowMove {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#enter-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 1s ease;
+}
+
+#enter-text {
+  font-size: 1.8rem;
+  letter-spacing: 8px;
+  border: 1px solid #fff;
+  padding: 20px 60px;
+  text-transform: uppercase;
+  transition: 0.4s;
+}
+
+#enter-text:hover {
+  background: #fff;
+  color: #000;
+}
+
+#main {
+  display: none;
+  padding: 80px 15%;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+nav {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 80px;
+}
+
+nav button {
+  background: none;
+  border: none;
+  color: #777;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+nav button:hover {
+  color: #fff;
+}
+
+.section {
+  display: none;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.active {
+  display: block;
+}
+
+.panel {
+  max-width: 900px;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+p {
+  line-height: 2;
+  color: #aaa;
+  margin-bottom: 25px;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin-bottom: 15px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+li:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="enter-screen">
+  <div id="enter-text">click to enter</div>
+</div>
+
+<div id="main">
+  <nav>
+    <button onclick="showSection('about')">about</button>
+    <button onclick="showSection('projects')">projects</button>
+    <button onclick="showSection('skills')">skills</button>
+    <button onclick="showSection('contact')">contact</button>
+  </nav>
+
+  <div id="about" class="section active">
+    <div class="panel">
+      <h1>supa</h1>
+      <p>
+        Im 15, i fuck wit makin games, coding, & playin vr 
+		not gonna do to much wit dis website, its a test fr
+      </p>
+      <p>
+        titanium's my BROTHER & the only person i trust, ion fw nobody like i fw him
+      </p>
+      <p>
+        most games i mainly make, i dont lock in on. most of the times they're prototypes.
+      </p>
+      <p>
+        sub to my yt!
+      </p>
+    </div>
+  </div>
+
+  <div id="projects" class="section">
+    <div class="panel">
+      <h1>projects</h1>
+      <h2>selected work</h2>
+      <ul>
+        <li>Primal Fear VR</li>
+        <li>Dark Deception</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="skills" class="section">
+    <div class="panel">
+      <h1>skills</h1>
+      <h2>capabilities</h2>
+      <ul>
+        <li>Coding</li>
+        <li>Creating Content</li>
+        <li>Playing games</li>
+        <li>Making games</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="contact" class="section">
+    <div class="panel">
+      <h1>contact</h1>
+      <h2>reach out</h2>
+      <ul>
+        <li>github.com/supax0</li>
+        <li>discord: supax0</li>
+        <li>open to collaborations</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const enterScreen = document.getElementById("enter-screen");
+const main = document.getElementById("main");
+
+enterScreen.addEventListener("click", () => {
+  enterScreen.style.opacity = "0";
+  setTimeout(() => {
+    enterScreen.style.display = "none";
+    main.style.display = "block";
+  }, 1000);
+});
+
+function showSection(id) {
+  document.querySelectorAll(".section").forEach(section => {
+    section.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
+</script>
+
+</body>
+</html>
