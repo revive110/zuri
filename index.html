@@ -420,8 +420,7 @@ value="0.5">
 </div>
 
 
-<div class="glow" id="glow">
-
+<div class="glow" id="glow"></div>
 
 <div class="container">
 
@@ -592,92 +591,80 @@ join my server
 <script>
 
 
-/* Typing Effect */
 
-const words =
-"wockstarz.";
+<script>
 
+// Typing Effect
+const words = "wockstarz.";
 let index = 0;
 
-
-function typing(){
-
-if(index < words.length){
-
-document.getElementById("typing").innerHTML += words.charAt(index);
-
-index++;
-
-setTimeout(typing,50);
-
+function typing() {
+    if (index < words.length) {
+        document.getElementById("typing").innerHTML += words.charAt(index);
+        index++;
+        setTimeout(typing, 50);
+    }
 }
-
-}
-
-
 typing();
 
 
+// Mouse Glow
+const glow = document.getElementById("glow");
 
-/* Mouse Glow */
-
-const glow =
-document.getElementById("glow");
-
-
-document.addEventListener(
-"mousemove",
-(e)=>{
-
-glow.style.left =
-(e.clientX - 150) + "px";
-
-
-glow.style.top =
-(e.clientY - 150) + "px";
-
-
+document.addEventListener("mousemove", (e) => {
+    glow.style.left = (e.clientX - 150) + "px";
+    glow.style.top = (e.clientY - 150) + "px";
 });
 
 
+// Card Animation
+const cards = document.querySelectorAll(".card");
 
-/* Card Reveal */
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+});
 
-const cards =
-document.querySelectorAll(".card");
+cards.forEach(card => observer.observe(card));
 
 
-const observer =
-new IntersectionObserver(entries=>{
+// Music + Enter Screen
+const enter = document.getElementById("enter");
+const music = document.getElementById("music");
+const volume = document.getElementById("volume");
+
+music.volume = 0.5;
+
+volume.addEventListener("input", () => {
+    music.volume = volume.value;
+});
+
+enter.addEventListener("click", () => {
+    music.play();
+    enter.classList.add("hide");
+});
 
 
-entries.forEach(entry=>{
+// Floating Particles
+for (let i = 0; i < 80; i++) {
+    const p = document.createElement("div");
+    p.className = "particle";
 
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.top = Math.random() * 100 + "vh";
+    p.style.opacity = Math.random();
+    p.style.animation = "pulse " + (2 + Math.random() * 4) + "s infinite";
 
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-
-entry.target.style.transform="translateY(0)";
-
+    document.body.appendChild(p);
 }
 
 
-});
 
-
-});
-
-
-
-cards.forEach(card=>{
-
-observer.observe(card);
-
-});
-
-
-
+</script>
 </script>
 
 
