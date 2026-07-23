@@ -3,240 +3,563 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>abt me</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<title>Misery | Portfolio</title>
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  background: #000;
-  color: #fff;
-  overflow-x: hidden;
+    min-height: 100vh;
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
 }
 
-/* subtle animated gradient */
+
+/* Animated Background */
+
 body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: radial-gradient(circle at 30% 30%, #111, transparent 40%),
-              radial-gradient(circle at 70% 70%, #0a0a0a, transparent 40%);
-  animation: slowMove 25s linear infinite;
-  z-index: -1;
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 20%, #333, transparent 30%),
+    radial-gradient(circle at 80% 80%, #222, transparent 35%),
+    linear-gradient(135deg,#050505,#111);
+    z-index:-2;
 }
 
-@keyframes slowMove {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+.glow {
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:white;
+    opacity:.15;
+    filter:blur(120px);
+    pointer-events:none;
 }
 
-#enter-screen {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: opacity 1s ease;
+
+/* Layout */
+
+.container {
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
 }
 
-#enter-text {
-  font-size: 1.8rem;
-  letter-spacing: 8px;
-  border: 1px solid #fff;
-  padding: 20px 60px;
-  text-transform: uppercase;
-  transition: 0.4s;
+
+.card {
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:
+    blur(20px);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.5);
+
+    animation:
+    fade .8s ease;
 }
 
-#enter-text:hover {
-  background: #fff;
-  color: #000;
+
+@keyframes fade {
+
+from {
+opacity:0;
+transform:translateY(30px);
 }
 
-#main {
-  display: none;
-  padding: 80px 15%;
-  animation: fadeIn 1.2s ease forwards;
+to {
+opacity:1;
+transform:translateY(0);
 }
 
-nav {
-  display: flex;
-  gap: 50px;
-  margin-bottom: 80px;
 }
 
-nav button {
-  background: none;
-  border: none;
-  color: #777;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: 0.3s;
+
+
+/* Profile */
+
+.profile {
+    text-align:center;
 }
 
-nav button:hover {
-  color: #fff;
+
+.profile img {
+
+width:140px;
+height:140px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:3px solid white;
+
+box-shadow:
+0 0 30px rgba(255,255,255,.4);
+
 }
 
-.section {
-  display: none;
-  animation: fadeIn 0.8s ease forwards;
-}
-
-.active {
-  display: block;
-}
-
-.panel {
-  max-width: 900px;
-}
 
 h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 30px;
+
+font-size:60px;
+
+margin-top:20px;
+
 }
+
+
+.subtitle {
+
+color:#aaa;
+
+font-size:18px;
+
+margin-top:10px;
+
+}
+
+
+/* Buttons */
+
+.button {
+
+display:inline-block;
+
+margin-top:25px;
+
+padding:13px 30px;
+
+border-radius:30px;
+
+background:white;
+
+color:black;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+
+.button:hover {
+
+transform:scale(1.08);
+
+}
+
+
+
+/* Sections */
+
 
 h2 {
-  font-size: 1rem;
-  letter-spacing: 3px;
-  margin-bottom: 25px;
-  color: #555;
+
+font-size:30px;
+
+margin-bottom:15px;
+
 }
+
 
 p {
-  line-height: 2;
-  color: #aaa;
-  margin-bottom: 25px;
+
+color:#ccc;
+
+line-height:1.7;
+
 }
 
-ul {
-  list-style: none;
+
+
+/* Projects */
+
+
+.projects {
+
+display:grid;
+
+gap:15px;
+
 }
 
-li {
-  margin-bottom: 15px;
-  color: #aaa;
-  transition: 0.3s;
+
+.project {
+
+background:
+rgba(255,255,255,.06);
+
+padding:20px;
+
+border-radius:15px;
+
+transition:.3s;
+
 }
 
-li:hover {
-  color: #fff;
-  transform: translateX(5px);
+
+.project:hover {
+
+transform:translateY(-5px);
+
+background:
+rgba(255,255,255,.12);
+
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+
+
+/* Skills */
+
+.skills span {
+
+display:inline-block;
+
+padding:10px 18px;
+
+background:#222;
+
+border-radius:30px;
+
+margin:5px;
+
+color:#ddd;
+
 }
+
+
+
+/* Footer */
+
+footer {
+
+text-align:center;
+
+color:#666;
+
+padding:30px;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:600px){
+
+h1 {
+font-size:42px;
+}
+
+.card {
+padding:25px;
+}
+
+}
+
+.card {
+padding:25px;
+}
+
+
+/* Particles */
+
+.particle {
+    position:fixed;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+}
+
+
+/* Music Button */
+
+.music {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div id="enter-screen">
-  <div id="enter-text"god bless u nigga</div>
-</div>
 
-<div id="main">
-  <nav>
-    <button onclick="showSection('about')">abt me</button>
-    <button onclick="showSection('projects')">my projs</button>
-    <button onclick="showSection('skills')">my skills</button>
-    <button onclick="showSection('contact')">contact me</button>
-  </nav>
-
-  <div id="about" class="section active">
-    <div class="panel">
-      <h1>misery</h1>
-      <p>
-        im 14, i fuck wit makin games, coding, & playin vr 
-		not gonna do to much wit dis website, i was lazy
-      </p>
-      <p>
-        omorii's my BROTHER & the only person i trust, ion fw nobody like i fw him
-      </p>
-      <p>
-        im antisocial fr, im a introverted ass nigga dats a developer
-      </p>
-      <p>
-       follow my tt
-      </p>
-    </div>
-  </div>
-
-  <div id="projects" class="section">
-    <div class="panel">
-      <h1>projects</h1>
-      <h2>all of it</h2>
-      <ul>
-        <li>Old Taggers</li>
-        <li>Flash Tag / Fast Gorillas</li>
-		<li>Project Nox</li>  
-		<li>Open Tag</li>  
+<div class="glow" id="glow"></div>
 
 
-      </ul>
-    </div>
-  </div>
+<div class="container">
 
-  <div id="skills" class="section">
-    <div class="panel">
-      <h1>skills</h1>
-      <h2>what im good at</h2>
-      <ul>
-        <li>Coding</li>
-        <li>Creating Content</li>
-        <li>Playing games</li>
-        <li>Making games</li>
-      </ul>
-    </div>
-  </div>
 
-  <div id="contact" class="section">
-    <div class="panel">
-      <h1>contact me</h1>
-      <h2>come talk to me</h2>
-      <ul>
-        <li>github.com/misery110</li>
-        <li>discord: conflictedtarget.</li>
-        <li>i ego alot btw</li>
-      </ul>
-    </div>
-  </div>
+<section class="card profile">
+
+
+<img src="https://cdn.discordapp.com/attachments/1521915622596804650/1529738049079087173/Visit_TikTok_to_discover_profiles.jpg?ex=6a630714&is=6a61b594&hm=56ade68ade4d27d0eecd61069bba23e44500309b7e83e5568c34081faddd4c77">
+
+
+<h1>Misery</h1>
+
+
+<p class="subtitle" id="typing"></p>
+
+
+<a href="#contact" class="button">
+Contact Me
+</a>
+
+
+</section>
+
+
+
+<section class="card">
+
+<h2>About Me</h2>
+
+<p>
+I fw listening to music, making games, and playing vr.
+I make vr games, code, and build projects
+that I think are fun and unique.
+</p>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Projects</h2>
+
+
+<div class="projects">
+
+
+<div class="project">
+
+<h3>Flash Tag / Fast Gorillas</h3>
+
+<p>
+A gorilla tag fangame focused on details and its famous locomotion.
+</p>
 
 </div>
+
+
+
+<div class="project">
+
+<h3>Open Tag</h3>
+
+<p>
+ A gorilla tag fangame focused on details and its famous locomotion.
+</p>
+
+</div>
+
+
+
+<div class="project">
+
+<h3>Zen Taggers</h3>
+
+<p>
+A chill vr project with a focus on enjoyable gameplay.
+</p>
+
+</div>
+
+
+
+<div class="project">
+
+<h3>Project Nox</h3>
+
+<p>
+A project exploring new ideas and experiences.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+<!-- Skills -->
+
+<section class="card">
+
+<h2>Skills</h2>
+
+<div class="skills">
+
+<span>Coding</span>
+<span>Modeling</span>
+<span>Animating</span>
+<span>Creating Games</span>
+<span>Music</span>
+<span>Chilling</span>
+
+</div>
+
+</section>
+
+
+
+<!-- Contact -->
+
+<section class="card" id="contact">
+
+<h2>Contact</h2>
+
+<p>
+Discord:
+<strong>@conflictedtarget.</strong>
+</p>
+
+<br>
+
+<p>
+Want to work together or talk about projects?
+Feel free to reach out.
+</p>
+
+
+</section>
+
+
+
+<footer>
+
+© 2024 Misery
+
+</footer>
+
+
+</div>
+
+
 
 <script>
-const enterScreen = document.getElementById("enter-screen");
-const main = document.getElementById("main");
 
-enterScreen.addEventListener("click", () => {
-  enterScreen.style.opacity = "0";
-  setTimeout(() => {
-    enterScreen.style.display = "none";
-    main.style.display = "block";
-  }, 1000);
+
+/* Typing Effect */
+
+const words =
+"Making games • Playing vr • Listening to music";
+
+let index = 0;
+
+
+function typing(){
+
+if(index < words.length){
+
+document.getElementById("typing").innerHTML += words.charAt(index);
+
+index++;
+
+setTimeout(typing,50);
+
+}
+
+}
+
+
+typing();
+
+
+
+/* Mouse Glow */
+
+const glow =
+document.getElementById("glow");
+
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+glow.style.left =
+(e.clientX - 150) + "px";
+
+
+glow.style.top =
+(e.clientY - 150) + "px";
+
+
 });
 
-function showSection(id) {
-  document.querySelectorAll(".section").forEach(section => {
-    section.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
+
+
+/* Card Reveal */
+
+const cards =
+document.querySelectorAll(".card");
+
+
+const observer =
+new IntersectionObserver(entries=>{
+
+
+entries.forEach(entry=>{
+
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
 }
+
+
+});
+
+
+});
+
+
+
+cards.forEach(card=>{
+
+observer.observe(card);
+
+});
+
+
+
 </script>
+
 
 </body>
 </html>
