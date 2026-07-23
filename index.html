@@ -299,89 +299,12 @@ padding:25px;
 }
 
 
-/* Enter Screen */
+/* Music Button */
 
-#enter {
-
-position:fixed;
-
-inset:0;
-
-background:#050505;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:9999;
-
-cursor:pointer;
-
-transition:1s;
-
-}
-
-
-#enter h1 {
-
-font-size:70px;
-
-}
-
-
-#enter p {
-
-color:#aaa;
-
-animation:pulse 2s infinite;
-
-}
-
-
-@keyframes pulse {
-
-50% {
-
-opacity:.4;
-
-}
-
-}
-
-
-#enter.hide {
-
-opacity:0;
-
-pointer-events:none;
-
-}
-
-
-/* Volume */
-
-.volume {
-
-position:fixed;
-
-top:20px;
-
-right:20px;
-
-background:rgba(255,255,255,.1);
-
-padding:12px;
-
-border-radius:20px;
-
-z-index:100;
-
-backdrop-filter:blur(10px);
-
+.music {
+    position:fixed;
+    bottom:20px;
+    right:20px;
 }
 
 </style>
@@ -390,37 +313,9 @@ backdrop-filter:blur(10px);
 
 <body>
 
-<audio id="music" loop>
-
-<source src="music.mp3" type="audio/mpeg">
-
-</audio>
-
-
-<div class="volume">
-
-🔊
-
-<input 
-type="range"
-id="volume"
-min="0"
-max="1"
-step="0.01"
-value="0.5">
-
-</div>
-
-<div id="enter">
-
-<h1>Misery</h1>
-
-<p>Click to enter</p>
-
-</div>
-
 
 <div class="glow" id="glow"></div>
+
 
 <div class="container">
 
@@ -438,11 +333,12 @@ value="0.5">
 
 
 <a href="#contact" class="button">
-Contact me bruh
+Get in Touch
 </a>
 
 
 </section>
+
 
 
 <section class="card">
@@ -450,24 +346,10 @@ Contact me bruh
 <h2>About Me</h2>
 
 <p>
-i fw listening to music, makin games, n playin vr.
-i spend most of my time coding, creating VR games, and building projects that i think are fun and unique.
-</p>
-
-</section>
-
-
-
-<section class="card">
-
-<h2>Extra</h2>
-
-<p>
-i was top 1 once, top 1 hybrid in 2022-2023. i am curremtly getting that back, and it wont take long.
-</p>
-
-<p style="margin-top:15px;">
-i love this man called god, who wakes me up every morning and blesses me by having him in my life.
+i fw listening to music, makin games, n playin vr
+i make vr games, code, and build projects
+that i think are fun and unique
+(also i love god)
 </p>
 
 </section>
@@ -544,7 +426,7 @@ a project exploring new ideas and experiences.
 <span>coding</span>
 <span>modeling</span>
 <span>animating</span>
-<span>makin games</span>
+<span>making games</span>
 <span>music</span>
 <span>chilling</span>
 
@@ -568,7 +450,7 @@ Discord:
 <br>
 
 <p>
-alao dont text me, ill ego u
+also dont text me, ill ego u
 join my server
 </p>
 
@@ -579,7 +461,7 @@ join my server
 
 <footer>
 
-© 2024 Misery
+© 2026 Misery
 
 </footer>
 
@@ -591,80 +473,92 @@ join my server
 <script>
 
 
+/* Typing Effect */
 
-<script>
+const words =
+"wockstarz.";
 
-// Typing Effect
-const words = "wockstarz.";
 let index = 0;
 
-function typing() {
-    if (index < words.length) {
-        document.getElementById("typing").innerHTML += words.charAt(index);
-        index++;
-        setTimeout(typing, 50);
-    }
+
+function typing(){
+
+if(index < words.length){
+
+document.getElementById("typing").innerHTML += words.charAt(index);
+
+index++;
+
+setTimeout(typing,50);
+
 }
+
+}
+
+
 typing();
 
 
-// Mouse Glow
-const glow = document.getElementById("glow");
 
-document.addEventListener("mousemove", (e) => {
-    glow.style.left = (e.clientX - 150) + "px";
-    glow.style.top = (e.clientY - 150) + "px";
+/* Mouse Glow */
+
+const glow =
+document.getElementById("glow");
+
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+glow.style.left =
+(e.clientX - 150) + "px";
+
+
+glow.style.top =
+(e.clientY - 150) + "px";
+
+
 });
 
 
-// Card Animation
-const cards = document.querySelectorAll(".card");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-        }
-    });
-});
+/* Card Reveal */
 
-cards.forEach(card => observer.observe(card));
+const cards =
+document.querySelectorAll(".card");
 
 
-// Music + Enter Screen
-const enter = document.getElementById("enter");
-const music = document.getElementById("music");
-const volume = document.getElementById("volume");
-
-music.volume = 0.5;
-
-volume.addEventListener("input", () => {
-    music.volume = volume.value;
-});
-
-enter.addEventListener("click", () => {
-    music.play();
-    enter.classList.add("hide");
-});
+const observer =
+new IntersectionObserver(entries=>{
 
 
-// Floating Particles
-for (let i = 0; i < 80; i++) {
-    const p = document.createElement("div");
-    p.className = "particle";
+entries.forEach(entry=>{
 
-    p.style.left = Math.random() * 100 + "vw";
-    p.style.top = Math.random() * 100 + "vh";
-    p.style.opacity = Math.random();
-    p.style.animation = "pulse " + (2 + Math.random() * 4) + "s infinite";
 
-    document.body.appendChild(p);
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
 }
 
 
+});
 
-</script>
+
+});
+
+
+
+cards.forEach(card=>{
+
+observer.observe(card);
+
+});
+
+
+
 </script>
 
 
